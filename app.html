@@ -1,0 +1,108 @@
+<!doctype html>
+<html data-ng-app="myApp" data-ng-csp="">
+  <head>
+    <meta charset="UTF-8">
+    <title>Presently</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="container" ng-controller="MainCtrl" style="width:600px;padding-left:25px;padding-right:25px">
+
+      <div style="padding-top:15px;padding-bottom:50px;padding-left:15px">
+        <div style="float: right;"><img src="images/logo.png"></div>
+      </div>
+
+      <tabset>
+        <tab heading="Challenges">
+
+          <form class="well form-search" action="#">
+      		  <input type="text" ng-model="searchCriteria.keyword" class="input-x-large search-query" placeholder="Keyword...">
+      		  <button type="button" class="btn" ng-click="challengeSearch()">Search</button>
+            <div class="pull-right small" style="padding-top:5px; padding-right:10px">{{challengeSearchMessage}}</div>
+      		  <hr>
+      		  <div style="padding-left:10px">
+            <select ng-model="searchCriteria.field" ng-options="option.name for option in challengeSearchOptions"></select>
+            <div class="pull-right" style="padding-right:25px;padding-top:5px">
+              <div class="checkbox">
+                <label>
+                  <input type='checkbox' ng-model='searchCriteria.excludeComplete'> Exclude Completed
+                </label>
+              </div>
+            </div>
+
+      		  </div>
+      		</form>
+
+          <div ng-if="challenges.length > 0">
+
+            <div class="pull-right" style="padding-right:25px">
+               <div class="checkbox">
+                  <label>
+                    <input type='checkbox' ng-init='showChallengeDetails=false' ng-model='showChallengeDetails'> Show Details
+                  </label>
+                </div>
+            </div>
+
+        		<table class="table table-condensed">
+              <tr>
+                <th colspan="3">Challenge</th>
+            		<th>Closes</th>
+            		<th nowrap>Prizes</th>
+        		  </tr>
+              <tr ng-repeat="c in challenges">
+                <td width="25">
+                  <img ng-if="c.type == 'develop'" src="images/ico-track-develop.png" width="25" title="{{c.type}}">
+                  <img ng-if="c.type == 'design'" src="images/ico-track-design.png" width="25" title="{{c.type}}">
+                </td>
+                <td>
+                  <a href="http://www.topcoder.com/challenge-details/{{c.id}}/?type={{c.type}}" target="_blank">{{c.name}}</a>
+                  <span ng-if="showChallengeDetails">
+                    <span ng-if="c.type == 'develop'"><br/>Technologies: {{c.technologies}}</span>
+                    <span ng-if="c.type == 'develop'"><br/>Platforms: {{c.platforms}}</span>
+                    <br/>Registrants: {{c.registrants}}&nbsp;&nbsp;&nbsp;Submissions: {{c.submissions}}
+                    <br/>Type: {{c.challengeType}}&nbsp;&nbsp;&nbsp;Phase: {{c.phase}}
+                    <br/><a href="http://www.topcoder.com/direct/contest/detail.action?projectId={{c.id}}" target="_blank">Direct</a>&nbsp;&nbsp;&nbsp;<a href="https://apps.topcoder.com/forums/?module=Category&categoryID={{c.forumId}}" target="_blank">Forums</a></div>
+                  </span>
+                </td>
+                <td></td>
+                <td nowrap width="75">{{c.submissionEndDate}}</td>
+                <td width="50">${{c.totalPrize}}</td>
+        		  </tr>
+        		</table>
+
+        </div>
+
+        </tab>
+        <tab heading="Members">
+
+          <form class="well form-search" action="#">
+      		  <input type="text" ng-model="memberWhois.handleOrEmail" class="input-x-large search-query" placeholder="Handle or email...">
+            <button type="button" class="btn" ng-click="memberSearch()">Search</button>
+            <div id="searchResults" class="pull-right small" style="padding-top:5px; padding-right:10px"></div>
+      		</form>
+
+          <div style="padding:10px;padding-bottom:25px">
+            <h3>{{memberSearchMessage}}</h3>
+            <div ng-if="member" style="padding-top:10px">
+              <b>{{member.handle}}</b> is {{member.name}} ({{member.email}}) from {{member.country}}. Current status is {{member.status}} and their last login was {{member.lastLogin}}.
+            </div>
+
+          </div>
+
+        </tab>
+
+        <tab heading="New Challenge">
+          <h1 style="padding-bottom:25px">Imagine some really cool content here!</h1>
+        </tab>
+      </tabset>
+
+    </div>
+    <script src="./js/vendor/angular.min.js"></script>
+    <script src="./js/vendor/angular-route.min.js"></script>
+    <script src="./js/vendor/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script src="./js/vendor/moment.min.js"></script>
+    <script src="./js/vendor/angular-moment.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

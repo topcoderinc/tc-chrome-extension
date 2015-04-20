@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "topcoder",
+  "description": "Quick and handy access to the latest topcoder challenges and member data.",
+  "version": "0.2",
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "options_ui": {
+      "page": "options.html",
+      "chrome_style": true
+    },
+  "permissions": [
+    "tabs", "http://tc-search.herokuapp.com/*",
+    "tabs", "https://ez-user-service.herokuapp.com/*",
+    "storage"
+  ],
+  "icons": { "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png" },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "app.html"
+  },
+  "background": {
+    "scripts": ["js/vendor/angular.min.js"]
+  },
+  "chrome_url_overrides" : {
+    "newtab": "app.html"
+  }
+}
