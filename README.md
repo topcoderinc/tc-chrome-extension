@@ -10,6 +10,8 @@ For members you can search either by handle or email address and it will bring b
 
 This is bleeding-edge.... like "walking dead" bleeding edge and therefore may change or die with a bullet to the head.
 
+The app for the member search is on a single dyno so you may have to wake it up by trying the member search a couple of times.
+
 ## API Key
 
 If you want to search for member data, you must have an API key (since we don't want this info public). Email jeff@appirio.com he'll send you a key that you can add to the `Options` for the extension.
