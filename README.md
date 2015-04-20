@@ -1,6 +1,6 @@
 # Topcoder Google Chrome Extension
 
-A simple Chrome Extension that allows you to perform a keyword search across challenges and look up members by handle or email.
+A simple Chrome Extension that allows you to perform a keyword search across challenges and look up members by handle or email. The challenge data comes directly from the topcoder API (by way of Elasticsearch) while the member info comes from Salesforce.
 
 For challenges you can pick the scope of the search (defaults to the name of the challenge) and whether to exclude completed challenges. When the results return you can choose either a simple or expanded view of the challenges.
 
